@@ -6,7 +6,7 @@ import (
 
 // DbManager is a manager for multiple db instances
 type DbManager interface {
-	// Register register a db with name and sign
+	// Register a db with name and sign
 	// @param name: db name
 	// @param sign: db connection config sign, used to re-register db when connection config changed
 	// @param db: gorm db instance
@@ -23,7 +23,7 @@ type DbManager interface {
 	// @param name: db name
 	// @return: db sign and nil if db exists, nil and error if db not exists
 	GetSign(name string) (string, error)
-	// Exist check if db exists by name
+	// Exists check if db exists by name
 	// @param name: db name
 	// @return: true if db exists, false if db not exists
 	Exists(name string) bool
