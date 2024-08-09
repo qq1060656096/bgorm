@@ -1,8 +1,8 @@
-package bmdb_test
+package bgorm_test
 
 import (
 	"fmt"
-	"github.com/qq1060656096/bgorm/bmdb"
+	"github.com/qq1060656096/bgorm"
 	"github.com/stretchr/testify/assert"
 	"gorm.io/gorm"
 	"testing"
@@ -13,14 +13,14 @@ func TestOk(t *testing.T) {
 }
 
 func TestDefaultDbManager(t *testing.T) {
-	bmdb.DefaultDbManager.Register("test", "test.sign", &gorm.DB{})
-	bmdb.DefaultDbManager.Register("test2", "test2.sign", &gorm.DB{})
-	bmdb.DefaultDbManager.Register("test3", "test3.sign", &gorm.DB{})
-	assert.LessOrEqual(t, 3, bmdb.DefaultDbManager.Count())
+	bgorm.DefaultDbManager.Register("test", "test.sign", &gorm.DB{})
+	bgorm.DefaultDbManager.Register("test2", "test2.sign", &gorm.DB{})
+	bgorm.DefaultDbManager.Register("test3", "test3.sign", &gorm.DB{})
+	assert.LessOrEqual(t, 3, bgorm.DefaultDbManager.Count())
 }
 
 func TestNewMemoryDbManager(t *testing.T) {
-	m := bmdb.NewMemoryDbManager()
+	m := bgorm.NewMemoryDbManager()
 	test1Db := &gorm.DB{}
 	test2Db := &gorm.DB{}
 	test3Db := &gorm.DB{}
@@ -66,9 +66,9 @@ func concurrentTestDefaultDbManager() {
 		name := fmt.Sprintf("test%d", i)
 		sign := fmt.Sprintf("test%d.sign", i)
 		db := &gorm.DB{}
-		bmdb.DefaultDbManager.Register(name, sign, db)
-		bmdb.DefaultDbManager.Get(name)
-		bmdb.DefaultDbManager.Count()
-		bmdb.DefaultDbManager.Unregister(name)
+		bgorm.DefaultDbManager.Register(name, sign, db)
+		bgorm.DefaultDbManager.Get(name)
+		bgorm.DefaultDbManager.Count()
+		bgorm.DefaultDbManager.Unregister(name)
 	}
 }

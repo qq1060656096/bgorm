@@ -1,4 +1,4 @@
-package bmdb
+package bgorm
 
 import (
 	"encoding/json"
@@ -9,12 +9,8 @@ import (
 
 var (
 	_                DbManager = (*MemoryDbManager)(nil)
-	DefaultDbManager DbManager
+	DefaultDbManager DbManager = NewMemoryDbManager()
 )
-
-func init() {
-	DefaultDbManager = NewMemoryDbManager()
-}
 
 // NewMemoryDbManager 创建一个新的 MemoryDbManager 实例
 func NewMemoryDbManager() DbManager {

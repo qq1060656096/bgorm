@@ -1,4 +1,4 @@
-package bmdb
+package bgorm
 
 import (
 	"gorm.io/driver/mysql"
